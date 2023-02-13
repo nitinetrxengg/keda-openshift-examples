@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: test-app
-  name: test-app
+    app: keda-app
+  name: keda-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test-app
+      app: keda-app
   template:
     metadata:
       labels:
-        app: test-app
+        app: keda-app
         type: keda-testing
     spec:
       containers:
@@ -32,10 +32,10 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: test-app
+    app: keda-app
   annotations:
     prometheus.io/scrape: "true"
-  name: test-app
+  name: keda-app
 spec:
   ports:
   - name: http
@@ -57,4 +57,4 @@ spec:
   namespaceSelector: {}
   selector:
     matchLabels:
-       app: test-app
+       app: keda-app
